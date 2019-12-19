@@ -1,0 +1,20 @@
+---
+version: '3'
+services:
+        my-php:
+                image: php
+        mydb:
+                image: mysql:5
+                links:
+                        - my-php:php
+                        - apache:tomcat
+                environment:
+                        MYSQL_ROOT_PASSWORD: shyam
+        apache:
+                image: tomcat
+                ports:
+                        - 9999:8080
+                links:
+                        - my-php:php
+...
+
